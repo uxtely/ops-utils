@@ -14,7 +14,7 @@ same_location=10.0.4.40
 remote_location=`/bin/cat /etc/ip_inode_b`
 
 
-is_master() {
+is_primary() {
   local ip=$1
   local is_standby=`/usr/local/bin/psql postgres://$ip:5432 \
     --quiet \
@@ -44,15 +44,15 @@ EOF
   /bin/mv /tmp/etc_hosts /etc/hosts
 }
 
-s_is_master=`is_master $same_location`
-r_is_master=`is_master $remote_location`
+s_is_primary=`is_primary $same_location`
+r_is_primary=`is_primary $remote_location`
 
-if [ $s_is_master = 1 ] && [ $r_is_master = 1 ]; then
+if [ $s_is_primary = 1 ] && [ $r_is_primary = 1 ]; then
   msg="ERROR: Split Brain. Failed to switch Primary db target"
-elif [ $s_is_master = 1 ]; then
+elif [ $s_is_primary = 1 ]; then
   msg="Setting the db target to the SAME location pg instance"
   update_dn_in_hosts $same_location
-elif [ $r_is_master = 1 ]; then
+elif [ $r_is_primary = 1 ]; then
   msg="Setting the db target to the REMOTE location pg instance"
   update_dn_in_hosts $remote_location
 else
