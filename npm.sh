@@ -7,9 +7,9 @@ usage() {
 Usage: $0 {i|o|og}
 
 i   Runs "npm install" on all projects
-o   Checks for outaded NPMs on all projects
+o   Checks outdated NPMs on all projects
 ob   Same as "o" but opens the repos in a browser
-og  Checks for outaded NPMs globally
+og  Checks outdated NPMs globally
 EOF
 exit 1
 }
