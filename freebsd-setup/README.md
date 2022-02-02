@@ -1,13 +1,16 @@
-# FreeBSD's Installation Script 
+# FreeBSD's Installation
 
-See this blog post: https://blog.uxtely.com/freebsd-jails-network-setup
+These scripts auto-install FreeBSD, baseline harden it, and configure it with 3 jails.
+
+Check out the diagrams on this blog post:
+https://blog.uxtely.com/freebsd-jails-network-setup
 
 The configuration files in this directory match the structure they're
 going to be in the final server. These configs are tarred beforehand,
 and copied over to `/tmp/UxtelyInstallerConfigs/setups`, along with the installer 
 scripts.
 
-They're always served at: `https://orch.uxtely.com/setups/`
+We serve them from: `https://orch.uxtely.com/setups/`
 
 Each script part ends up printing a banner. If it doesn't print, something
 went wrong. For that, the scripts have `set -o errexit`, and a few tests,
