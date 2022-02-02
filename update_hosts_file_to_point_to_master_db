@@ -1,10 +1,13 @@
 #!/bin/sh
 
+# This script checks which node is the Primary database, and sets "db.l.lan" in /etc/hosts to it.
+# We need this because our Node.js Postgres driver (npm::pg)
+# doesn't support adding all the nodes IPs in the connection string
+
 # There are two targetable databases:
 #   10.0.4.40:5432  same   location pg_j
 #   192.168.56.{30,31}:5432  an spiped that targets the remote pg_j 
 #
-# This script checks which one is the Primary, and sets "db.l.lan" in /etc/hosts to it.
 # BTW, there's only a Primary + Hot-Stanby, there're no read-only replicas.
 # Also, notifies syslog if there was a connection error.
 
