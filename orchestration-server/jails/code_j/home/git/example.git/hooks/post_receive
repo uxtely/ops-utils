@@ -1,0 +1,79 @@
+#!/bin/sh
+
+ROOT=/home/git/example
+BARE=${ROOT}.git
+QA_REF=refs/heads/qa
+APPS="UserDocs Website AccountSPA AppSPA Server"
+
+alias git="git --work-tree=$ROOT"
+
+# Post Receive Hooks receive on stdin the: OldCommit NewCommit Branch
+read OLD NEW REF
+
+# Re-installs deps if any one of them changed.
+# Ignores main-app version changes, due to './run bump'
+ensure_latest_deps() {
+    app=$1
+    force=$2
+
+    if [ $force -eq 1 ]; then
+      changed_deps_count=1
+    else
+      changed_deps_count=`git diff -U0 $OLD $NEW --no-color -- "${app}/package-lock.json" | egrep "^[+-][[:space:]]" | grep -v '"version":' | grep -c ""`
+    fi
+
+    if [ $changed_deps_count -ne 0 ]; then
+        printf "%-8s Installing deps...\n" $app
+        cd $ROOT/${app}
+        npm ci
+        cd $BARE
+    else
+        printf "%-8s Skipping deps update.\n" $app
+    fi
+}
+
+# Builds if the main package version changed.
+ensure_latest_build() {
+    app=$1
+    force=$2
+
+    if [ $force -eq 1 ]; then
+      version_changed=1
+    else
+      version_changed=`git diff -U0 $OLD $NEW --no-color -- "${app}/package.json" | grep -c "version"`
+    fi
+
+    if [ $version_changed -ne 0 ]; then
+       printf "%-8s Building...\n" $app
+       cd $ROOT/${app}
+       ./make prod
+       cd $BARE
+    else
+       printf "%-8s Skipping build. Version didn't change.\n" $app
+    fi
+}
+
+# Runs only if it was pushed to the QA branch.
+if [ $REF = $QA_REF ]; then
+    git checkout qa --force
+    git clean -fd
+
+    # Just for handling the first time the "qa" branch is pushed
+    # The test is negated because its return code `$?` is naturally negated.
+    NULL_SHA=`awk 'BEGIN { while (c++ < 40) printf "0" }'`
+    isNewBranch=`test $OLD != $NULL_SHA ; echo $?`
+
+   for app in $APPS; do
+        ensure_latest_deps $app $isNewBranch
+    done
+
+    for app in $APPS; do
+        ensure_latest_build $app $isNewBranch
+    done
+else
+    echo "======"
+    echo "*** Did Not Build ***"
+    echo "Pushed ok to $REF but skipped the CI."
+    echo "Only pushes to the 'qa' branch get built."
+fi
+

@@ -1,0 +1,56 @@
+<svg width="7.7in" height="4.6in" version="1.1" viewBox="0 0 732.49635 440.48146" xmlns="http://www.w3.org/2000/svg">
+	<style>/*<![CDATA[ */
+    text {
+      font-family: -apple-system, system-ui, Arial, sans-serif;
+    }
+  /* ]]>*/
+	</style>
+	<defs>
+		<marker id="e" overflow="visible" orient="auto">
+			<path d="m-9.6 0-4 4 14-4-14-4z" fill="#29b6f6" stroke="#29b6f6" stroke-width=".8pt"/>
+		</marker>
+		<marker id="d" overflow="visible" orient="auto">
+			<path d="m-9.6 0-4 4 14-4-14-4z" fill="#f79576" stroke="redf79576" stroke-width=".8pt"/>
+		</marker>
+	</defs>
+	<path d="m22 70-6.7 6.7v3.3h84v-3.3l-6.7-6.7zm0-43h70v42h-70z" fill="#e4e4e4" stroke="#969696"/>
+	<path d="m4.2e2 3.6e2h50" fill="none" marker-end="url(#e)" stroke="#29b6f6"/>
+	<path d="m1.2e2 2e2h2e2v78h-2e2z" fill="#e4e4e4" stroke="#bfbfbf"/>
+	<text x="214.03395" y="193.06598" font-size="17px" stroke-opacity="0">
+		<tspan x="214.03395" y="193.06598" text-anchor="end">Host
+			<tspan font-weight="bold">orch</tspan>
+		</tspan>
+	</text>
+	<path d="m1.5e2 2.2e2h1.4e2v39h-1.4e2z" fill="#ffccbc" stroke="#bfbfbf"/>
+	<text x="258" y="246" font-size="17px" stroke-opacity="0">
+		<tspan x="258" y="246" text-anchor="end">Jail
+			<tspan font-weight="bold">code_j</tspan>
+		</tspan>
+	</text>
+	<text x="15.065445" y="105.52785" font-size="14px" stroke-opacity="0">&gt; ssh -t orch_code_j /home/git/deploy</text>
+	<path d="m63 1.8e2.0043 65 39-2e-5" fill="none" marker-end="url(#d)" stroke="#f79576"/>
+	<path d="m5e2 3.3e2h2e2v78h-2e2z" fill="#e4e4e4" stroke="#bfbfbf"/>
+	<text x="622.13086" y="317.54813" font-size="17px" stroke-opacity="0">
+		<tspan x="504.76566" y="317.54813">Hosts:
+			<tspan font-weight="bold">qam, qas</tspan>
+		</tspan>
+	</text>
+	<path d="m5.3e2 3.5e2h1.4e2v39h-1.4e2z" fill="#b3e5fc" stroke="#bfbfbf"/>
+	<text x="566" y="376" font-size="17px" stroke-opacity="0">
+		<tspan x="566" y="376">Jail
+			<tspan font-weight="bold">node_j</tspan>
+		</tspan>
+	</text>
+	<text x="176.64929" y="365.74179" font-size="14px" stroke-opacity="0">Sends the production bundle</text>
+	<text x="155.65115" y="343.74179" font-size="14px" stroke-opacity="0">
+		<tspan font-weight="bold">for each app</tspan>
+	</text>
+	<text x="176.64929" y="385.74179" font-size="14px" stroke-opacity="0">Tells to deploy</text>
+	<path d="m4.2e2 3.8e2h50" fill="none" marker-end="url(#e)" stroke="#29b6f6"/>
+	<text x="35.028133" y="126.48858" font-size="14px" stroke-opacity="0">&gt; Select the apps to deploy [Server]</text>
+	<text x="35.028133" y="144.45506" font-size="14px" stroke-opacity="0">&gt; Select the servers to deploy to [qam, qas]
+	</text>
+	<text x="132.14027" y="323.3176" font-size="14px" stroke-opacity="0">
+		<tspan font-weight="bold">for each server</tspan>
+	</text>
+</svg>

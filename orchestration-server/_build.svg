@@ -1,0 +1,37 @@
+<svg width="6.2in" height="3.2in" version="1.1" viewBox="0 0 588.97577 304.72872" xmlns="http://www.w3.org/2000/svg">
+	<style>/*<![CDATA[ */
+    text {
+      font-family: -apple-system, system-ui, Arial, sans-serif;
+    }
+  /* ]]>*/
+	</style>
+	<defs>
+		<marker id="d" overflow="visible" orient="auto">
+			<path d="m-9.6 0-4 4 14-4-14-4z" fill="#f79576" stroke="redf79576" stroke-width=".8pt"/>
+		</marker>
+	</defs>
+	<path d="m21 70-6.7 6.7v3.3h84v-3.3l-6.7-6.7zm0-43h70v42h-70z" fill="#e4e4e4" stroke="#969696"/>
+	<text x="16.028477" y="103.81441" font-size="11px" stroke-opacity="0">
+		<tspan x="16.028477" y="103.81441" font-size="16px" font-weight="bold">On the 'qa' branch</tspan>
+	</text>
+	<path d="m2.6e2 1.4e2h2e2v78h-2e2z" fill="#e4e4e4" stroke="#bfbfbf"/>
+	<text x="353.46301" y="129.53166" font-size="17px" stroke-opacity="0">
+		<tspan x="353.46301" y="129.53166" text-anchor="end">Host
+			<tspan font-weight="bold">orch</tspan>
+		</tspan>
+	</text>
+	<path d="m2.9e2 1.6e2h1.4e2v39h-1.4e2z" fill="#ffccbc" stroke="#bfbfbf"/>
+	<text x="400" y="185" font-size="17px" stroke-opacity="0">
+		<tspan x="400" y="185" text-anchor="end">Jail
+			<tspan font-weight="bold">code_j</tspan>
+		</tspan>
+	</text>
+	<text x="14.248478" y="127.99445" font-size="14px" stroke-opacity="0">&gt; cd Server</text>
+	<text x="14.248478" y="146.19444" font-size="14px" stroke-opacity="0">&gt; ./make bump</text>
+	<text x="14.248478" y="164.57443" font-size="14px" stroke-opacity="0">&gt; git commit</text>
+	<path d="m1.9e2 1.8e2 46-2e-5" fill="none" marker-end="url(#d)" stroke="#f79576"/>
+	<text x="14.248478" y="183.5744" font-size="14px" stroke-opacity="0">&gt; git push orch</text>
+	<text x="266.26248" y="247.11429" font-size="14px" stroke-opacity="0">Ensures npm deps are up to date.</text>
+	<text x="266.26248" y="267.11423" font-size="14px" stroke-opacity="0">Rebuilds, because the app's version changed.
+	</text>
+</svg>

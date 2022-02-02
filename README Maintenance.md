@@ -5,7 +5,7 @@
 ## [Patch FreeBSD](./Reference FreeBSD Patching.md)
 
 ## Firewall Blocklist (daily)
-curl script + list: [/etc/ips_blocklist](server-setup/etc/ips_blocklist)
+curl script + list: [/etc/ips_blocklist](location-server/etc/ips_blocklist)
 
 ## Mailing Lists
 
