@@ -21,7 +21,7 @@ mkdir /mnt/iso
 mount_cd9660 /dev/iso9660/13_0_RELEASE_AMD64_CD /mnt/iso
 
 read -p "Orch IP: " ORCHIP
-echo "$ORCHIP orch.uxtely.com" >> /etc/hosts
+echo "$ORCHIP orch.example.com" >> /etc/hosts
 
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
