@@ -1,5 +1,5 @@
 # Installing a Location Server
-[Installer Configs](./Installer%20Configs.md) documents the scripts used here.
+[Installer Configs](./README.md) documents the scripts used here.
 
 ## Pre-Install (One Time Only)
 ```shell
@@ -12,16 +12,13 @@ make_password 16 > $VAULTDIR/appserver.db.pass
 make_password 16 > $VAULTDIR/replicator.db.pass
 ```
 
-
-- Make sure your laptops Nginx Installer certificate is not expired. e.g.
-    - `curl -v --insecure https://orch.example.com 2>&1 | grep expire`
-- [Create a TLS certificate](../orchestration/jails/tls_j/TLS%20Certs.md) for the `nginx_j`
+- Make sure Orch's Nginx TLS certificate is not expired. e.g. try:
+`curl -v --insecure https://orch.example.com 2>&1 | grep expire`
 
 ### If installing in a local VM: 
-- Make sure there's a `vboxnet0` `192.168.56.1/24` (no DHCP) in File -> Host Network Manager.
+- Make sure there's a `vboxnet0` `192.168.56.1/24` (no DHCP) in File &rarr; Host Network Manager.
 - In `$THISREPO/freebsd-setup/etc/ips_martians`: 
   - remove the location server subnet (e.g. **`10/8`**) from the **`<martians>`** table . 
-  - TODO @Verify if it's still needed for runtime I think it was only needed for the compiled packages?
 
 
 ### If installing in a remote:
@@ -52,14 +49,13 @@ If for **VM**: (.110 qam, .111 qas)
 ```shell script
 ifconfig vtnet0 10.0.0.110/24
 route add default 10.0.0.1
-ORCHIP=10.0.0.220
+ORCHIP=
 ```
 
 If for **Hivelocity**: (.155 hvm, .165 hvs)
 ```shell script
 ifconfig em0 192.0.2.155/29
-route add default 192.0.0.2.153
-# Use Vultr's IP (of the forwarder)
+route add default 192.0.2.153
 ORCHIP=
 ```
 
@@ -90,7 +86,7 @@ HOSTUSER=efortis
 ```
 
 ```shell script
-_tar=${SERVER}.uxtely.lan-root-passwords.tar
+_tar=${SERVER}.example.lan-root-passwords.tar
 
 mkdir -p ~/.SomeSecretDirectory
 cd ~/.SomeSecretDirectory
@@ -106,8 +102,7 @@ Delete the root passwords tar from the server.
 ssh $SERVER rm /home/${HOSTUSER}/$_tar
 ```
 
-### If it's for a QA location
-**IMPORTANT TODO**
+### If it's for a QA server
 Replace stripe_vars.json with `stripe_vars.test.json`
 
 
@@ -149,7 +144,7 @@ PGDATA=/var/db/postgres/data13
 
 In the PrimaryDB, we don't use ALTER so we don't have to clear the `.psql_history`
 
-The ReplicaDB uses the local spipe (which targets the PrimaryDB), then
+The ReplicaDB uses the local `spipe` (which targets the PrimaryDB), then
 `pg_basebackup` sets it up as standby by creating `$PGDATA/standby.signal`
 
 ### Deploy the TLS certificate
@@ -172,11 +167,7 @@ shutdown -r now "First boot after install"
 `/etc/hosts` 
 ```shell script
 10.0.0.110        example.com
-10.0.0.110    www.uxtely.com
-10.0.0.110   docs.uxtely.com
-10.0.0.110   blog.uxtely.com
-10.0.0.110   free.uxtely.com
-10.0.0.110     my.uxtely.com
+10.0.0.110   blog.example.com
 ```
 
 

@@ -4,9 +4,9 @@
 This is guide for injecting a file into a FreeBSD
 ISO, so it can run an automatic installation.
 
-**But**, you can also boot from a normal release ISO and simply
-download and run the installation script. For example, select
-**Shell** from the initial screen (Install, **Shell**, Live CD) and:
+**But I don't create them anymore.** That's to say, you can also boot from a normal
+release ISO and simply download and run the installation script. For example,
+select **Shell** from the initial screen (Install, **Shell**, Live CD) and:
 ```shell
 ifconfig em0 192.0.0.2.111/24
 route add default 192.0.2.1
@@ -18,7 +18,7 @@ fetch https://$ORCHIP/setups/installerconfig
 ```
 
 
-## Otherwise, if you want to create the ISO:
+## But if you want to create the ISO:
 Building this ISO is just a one time step, new servers can reuse it.
 
 This guide injects an auto-installer script into

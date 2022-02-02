@@ -20,8 +20,17 @@ set -o xtrace
 mkdir /mnt/iso
 mount_cd9660 /dev/iso9660/13_0_RELEASE_AMD64_CD /mnt/iso
 
-read -p "Orch IP: " ORCHIP
-echo "$ORCHIP orch.example.com" >> /etc/hosts
+echo "Copying pre-baked hosts file..."
+cp /mnt/iso/etc/hosts /etc/hosts
+
+# Try to DHCP on the following interfaces in order
+echo "DHCP..."
+for nic in vtnet0 em0 bge0 igb0; do
+  if ifconfig $nic; then
+    dhclient $nic
+    break
+  fi
+done
 
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf

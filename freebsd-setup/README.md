@@ -14,8 +14,10 @@ went wrong. For that, the scripts have `set -o errexit`, and a few tests,
 but not much tracing information. Also, each script gets deleted if it
 didn't fail; so you can check for that too (if you missed the banners).
 
-Temporary dummy files. The `nginx_j` has self-signed certificates, and `node_j` has a temp
-`main.js`. These files are just to allow the jails to boot fine during the installation.
+**Temporary dummy files.**
+These files are just to allow the jails to boot fine during the installation.
+- `nginx_j` needs self-signed certificates
+- `node_j` has a temp `main.js`
 
 
 ### init-location-installer-bundle.sh
@@ -31,7 +33,7 @@ Overview:
 ### installerconfig.sh
 Manually triggered in the server with: 
 ```shell script
-bsdinstall script /tmp/installerconfig.sh
+/usr/sbin/bsdinstall script /tmp/installerconfig.sh
 ```
 - Installs the OS
 - ↓ Downloads and runs `installerconfig-part2.sh`
@@ -71,14 +73,3 @@ Common problems:
 - The orchestration server is not up
 - Some device didn't unmount like `/dev/cd`
   - `pwait` or `sleep 2` help to finish killing some processes. 
-
-
-## Notes
-### installerconfig.sh
-It could be injected into a boot ISO as `/etc/installerconfig` (without extension),
-as we used to do. That runs it automatically on boot. But
-still requires manually entering the disk encryption password. Therefore, it's
-not worth all the extra effort, plus it needs extra cooperation of the hosting provider.
-
-### TODO
-Instead of using the laptop, init-location-installer-bundle.sh should be triggered in Orch.
