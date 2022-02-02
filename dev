@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# Runs the dev servers in tmux vertical panes
-# It sets the current working dir because the scripts have relative paths
+# Runs the dev servers in tmux's vertical panes.
+# It sets the current working dir because our make script uses relative paths
 
 if [ `uname` = "Darwin" ]; then
   StartDB="./make startdb;"
 fi
 
-tmux new-session -s uxtely -d # Detached session
+tmux new-session -s myproject -d # Detached session
 tmux split-window -v # Second vertical pane
 tmux split-window -v # Third
 
@@ -15,4 +15,4 @@ tmux send-keys -t 0 "cd $REPO/ServerSide; $StartDB ./make dev" Enter # Targets t
 tmux send-keys -t 1 "cd $REPO/AppSPA; ./make dev" Enter
 tmux send-keys -t 2 "cd $REPO/AccountSPA; ./make dev" Enter
 
-tmux attach -t uxtely
+tmux attach -t myproject
