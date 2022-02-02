@@ -14,7 +14,7 @@ Setup the Server-clients consume packages from `orch_setup_j` with:
 `/usr/local/etc/pkg/repos/myrepo.conf` 
 ```
 myrepo: {
-	url: https://orch.appbrainstorm.com
+	url: https://orch.example.com
 }
 ```
 
@@ -58,9 +58,7 @@ If the patch is not available in ports yet:
 ## Upgrading Clients
 Repeat this in the Host
 ```shell script
-SSL_NO_VERIFY_PEER=1 \
-  SSL_NO_VERIFY_HOSTNAME=1 \
-  pkg upgrade -y
+pkg upgrade -y
 ```
 That can also be used for the jails **except**: `node14` and
 `postgresql13-server`. Those have numbers and have to manually installed.
