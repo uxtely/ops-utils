@@ -1,7 +1,9 @@
 #!/bin/sh
 
+# https://blog.uxtely.com/deploy-assets-before-documents
+
 # It copies subdirectories first. So during deployment, it
-# avoids FOUCs, and 404s of images, css, js. By convetion, our
+# avoids FOUCs, and 404s of images, css, js. By convention, our
 # assets are in subdirs and the HTML files at the top level.
 #
 # rsync --times (preserve time) is for consistent LastModifiedTime across servers
