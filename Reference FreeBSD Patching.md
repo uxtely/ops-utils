@@ -62,9 +62,9 @@ reboot
 freebsd-update install
 ```
 
-We no longer compile packages like commits. We compiled mainly to use `libressl`.
-But it was to complex (and time-consuming), e.g. after compiling all the packages
-(everything should was compiled everytime), we had an issue in NodeJS that only
-happened in the HV bare-metal servers, but did not occur in the VirtualBox QA machines.
+We no longer compile packages. We compiled mainly to use `libressl`. But it was
+to complex and time-consuming, e.g. after compiling all the packages (everything
+should was compiled everytime), we had an issue in NodeJS that only happened in
+the bare-metal servers, but wasn't reproducible in the VirtualBox QA machines.
 
-It was that issue that made me get rid of compiling the packages. Other than that, I would keep compiling everything.
+If it wasn't for that issue, I would keep compiling everything.
