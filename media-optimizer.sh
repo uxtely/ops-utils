@@ -3,6 +3,8 @@ set -o noglob
 IFS=$'\n'
 
 # https://blog.uxtely.com/convert-to-avif-programmatically
+
+# Requires:
 # brew install oxipng webp libavif ffmpeg
 
 # We only use PNGs, no JPGs. This way we can ensure
@@ -27,8 +29,8 @@ for img in $(find $1 -type f -name *.png); do
 done
 
 
-# For web fast playing 'moov' (the metadata section) of an mp4
-# should appear before the 'mdat' (video and audio section)
+# For faster video playback, the metadata section (moov) of an mp4
+# should appear before the video and audio section (mdat).
 # https://trac.ffmpeg.org/wiki/HowToCheckIfFaststartIsEnabledForPlayback
 # https://www.ramugedia.com/mp4-container
 for video in $(find $1 -type f -name *.mp4); do
