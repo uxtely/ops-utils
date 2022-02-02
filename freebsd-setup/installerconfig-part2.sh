@@ -69,7 +69,7 @@ fetch $URL_CONF_JAILS -qo- |\
   tar --no-same-owner --no-same-permissions -xf- -C /mnt
 
 
-# Prepend host-specific settigns (NIC driver names)
+# Prepend host-specific settings (NIC driver names)
 /bin/ed -s /etc/rc.conf << EOF
 1i
 ifconfig_`/bin/cat /etc/xnic_name`_name="xnic"
