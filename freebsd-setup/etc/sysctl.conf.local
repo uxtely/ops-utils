@@ -1,0 +1,46 @@
+hw.kbd.keymap_restrict_change=4
+
+kern.randompid=1 # Randomize the pid modulus that's used to randomize the pid creation.
+kern.random.fortuna.minpoolsize=128 # Slower, but provides more secure seeds. See random(4).
+
+# Prevents swapping shared memory to disk. Recommended by PostgresSQL
+#   https://www.postgresql.org/docs/current/kernel-resources.html
+kern.ipc.shm_use_phys=1  
+
+kern.elf32.aslr.enable=1
+kern.elf64.aslr.enable=1
+
+kern.elf32.aslr.honor_sbrk=0
+kern.elf64.aslr.honor_sbrk=0
+
+kern.elf32.aslr.pie_enable=1
+kern.elf64.aslr.pie_enable=1
+
+# Hide processes in jails, or running as other {groups, users}.
+security.bsd.see_jail_proc=0
+security.bsd.see_other_gids=0
+security.bsd.see_other_uids=0
+
+security.bsd.unprivileged_read_msgbuf=0 # Disable reads on the kernel message buffer by unprivileged users.
+security.bsd.unprivileged_proc_debug=0 # Disable process debugging facilities to unprivileged users.
+
+# Unprivileged processes cannot create hard links to files owned by other {groups, users}.
+security.bsd.hardlink_check_gid=1
+security.bsd.hardlink_check_uid=1
+
+security.bsd.stack_guard_page=1 # Specifies the number of guard pages for a stack that grows. https://blog.qualys.com/securitylabs/2017/06/19/the-stack-clash
+
+net.inet.ip.redirect=0 # Disable IP redirects.
+net.inet.ip.random_id=1 # Randomize ip_id's.
+net.inet.ip.check_interface=1 # Check the packet arrived on correct interface.
+net.inet.ip.process_options=0 # Enable IP options processing ([LS]SRR, RR, TS). Disabled because it's only needed for IGMP and multicast.
+
+net.inet.tcp.drop_synfin=1 # Drop packets with SYN+FIN set.
+net.inet.tcp.icmp_may_rst=0 # Certain ICMP unreachable messages may abort connections in SYN_SENT.
+net.inet.tcp.cc.algorithm=cubic # 'cubic' is a better congestion control than the default 'newreno'.
+
+net.inet.tcp.blackhole=2 # Do not send RST on segments to closed ports. See blackhole(4).
+net.inet.udp.blackhole=1 # Do not send port unreachables for refused connects.
+
+net.inet.icmp.drop_redirect=1 # Ignore ICMP redirects.
+

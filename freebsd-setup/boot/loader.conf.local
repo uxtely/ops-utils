@@ -1,0 +1,11 @@
+loader_logo="none"
+autoboot_delay="2"
+cc_cubic_load="YES" # See net.inet.tcp.cc.algorithm
+
+machdep.hyperthreading_allowed="0"
+hw.spec_store_bypass_disable="1"
+hw.mds_disable="3" # https://www.freebsd.org/security/advisories/FreeBSD-SA-19:07.mds.asc
+
+hw.snd.default_auto="0"
+
+

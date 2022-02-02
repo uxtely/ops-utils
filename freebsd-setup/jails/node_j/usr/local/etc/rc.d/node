@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# PROVIDE: node
+# REQUIRE: NETWORKING LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="node"
+rcvar="${name}_enable"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+reload_cmd="${name}_reload"
+restart_cmd="${name}_restart"
+extra_commands="reload"
+
+load_rc_config $name
+
+: ${node_enable:="no"}
+: ${node_app:="/usr/local/DistBundles/ServerSide/main.js"}
+: ${node_stderr:="/var/log/nodejs.error.log"}
+
+pidfile="/var/run/${name}.pid"
+command="/usr/local/bin/${name}"
+
+required_files="${node_app}"
+
+
+node_start() {
+  /usr/bin/logger "Starting NodeJS"
+  /usr/sbin/daemon -u node -p $pidfile -o "$node_stderr" -m 2 "$command" $node_app < /dev/null
+}
+# -m 2 means only write stderr
+#
+# The /dev/null is a workaround for a crash when using cluster.fork()
+# That crash only happens at boot, it doesn't happen doing `service node start`
+#   https://github.com/nodejs/node/issues/9818#issuecomment-263165386
+
+
+node_stop() {
+  /bin/kill -SIGTERM `cat $pidfile`
+}
+
+
+node_restart() {
+  if [ -f $pidfile ]; then
+    node_stop
+    pwait `cat $pidfile`
+  fi
+
+  node_start
+}
+
+
+node_reload() {
+  if [ -f $pidfile ]; then
+      /bin/kill -SIGHUP `cat $pidfile`
+  else
+      node_start
+  fi
+}
+
+
+load_rc_config $name
+run_rc_command "$@"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rsync -r /home/deployer/certs-collector/ /usr/local/DistBundles/certs
+
+doas /usr/local/sbin/reload-nginx

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ROOT=/usr/local/DistBundles/ServerSide
+COLLECTOR=/home/deployer/ServerSide
+
+rsync -r $COLLECTOR/ $ROOT
+doas /usr/local/sbin/reload-node

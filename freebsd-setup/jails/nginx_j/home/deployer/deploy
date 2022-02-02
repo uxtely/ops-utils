@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# It copies subdirectories first. So during deployment, it
+# avoids FOUCs, and 404s of images, css, js. By convetion, our
+# assets are in subdirs and the HTML files at the top level.
+#
+# rsync --times (preserve time) is for consistent LastModifiedTime across servers
+# (that LMT is part of the ETag)
+
+case $1 in
+  AccountSPA | Blog | AppSPA | UserDocs | Website)
+    project=$1 ;;
+  *)
+    echo "ERROR: Invalid Project '$1'" >&2
+    exit 1 ;;
+esac
+
+SOURCE=/home/deployer/$project
+DEST=/usr/local/DistBundles/$project
+
+# Subdirs first (assets)
+rsync --recursive --include '*/' --exclude '/*' $SOURCE/ $DEST/
+
+# Then top level (HTML documents)
+rsync --times --quiet $SOURCE/* $DEST

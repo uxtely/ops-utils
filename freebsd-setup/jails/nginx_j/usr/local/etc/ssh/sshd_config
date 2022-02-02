@@ -1,0 +1,13 @@
+Ciphers chacha20-poly1305@openssh.com
+
+AllowAgentForwarding no
+AllowTcpForwarding no
+ChallengeResponseAuthentication no
+PermitRootLogin no
+VersionAddendum none
+X11Forwarding no
+
+#ChrootDirectory none
+
+# vim: set ft=conf :
+

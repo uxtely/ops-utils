@@ -1,0 +1,8 @@
+SHELL=/bin/sh
+PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin
+MAILTO=""
+
+# Every minute, removes IPs from the <ratelimit>
+# table that were added at least 60 seconds ago.
+
+* * * * * root /sbin/pfctl -t ratelimit -T expire 60
