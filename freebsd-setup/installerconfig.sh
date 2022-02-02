@@ -25,5 +25,5 @@ echo "$ORCHIP orch.example.com" >> /etc/hosts
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 
-fetch https://orch.appbrainstorm.com/setups/installerconfig-part2.sh -qo- | /bin/sh
+fetch https://orch.example.com/setups/installerconfig-part2.sh -qo- | /bin/sh
 
