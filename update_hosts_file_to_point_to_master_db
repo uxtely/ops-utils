@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# There are two targetable databases:
+#   10.0.4.40:5432  same   location pg_j
+#   192.168.56.{30,31}:5432  an spiped that targets the remote pg_j 
+#
+# This script checks which one is the Primary, and sets "db.l.lan" in /etc/hosts to it.
+# BTW, there's only a Primary + Hot-Stanby, there're no read-only replicas.
+# Also, notifies syslog if there was a connection error.
+
+
+db_dn="db.l.lan"
+same_location=10.0.4.40
+remote_location=`/bin/cat /etc/ip_inode_b`
+
+
+is_master() {
+  local ip=$1
+  local is_standby=`/usr/local/bin/psql postgres://$ip:5432 \
+    --quiet \
+    --no-align \
+    --no-psqlrc \
+    --tuples-only \
+    --username postgres \
+    --command "SELECT pg_is_in_recovery()" 2>&1`
+
+  case "$is_standby" in
+    "f")  /bin/echo 1 ;;
+    "t")  /bin/echo 0 ;;
+    *)    /bin/echo 0
+          /usr/bin/logger "$is_standby" ;; # logs connection errors
+  esac
+}
+
+
+update_dn_in_hosts() {
+  local dbip=$1
+
+  /bin/cat > /tmp/etc_hosts << EOF
+`/usr/bin/grep -v $db_dn /etc/hosts`
+$dbip $db_dn
+EOF
+
+  /bin/mv /tmp/etc_hosts /etc/hosts
+}
+
+s_is_master=`is_master $same_location`
+r_is_master=`is_master $remote_location`
+
+if [ $s_is_master = 1 ] && [ $r_is_master = 1 ]; then
+  msg="ERROR: Split Brain. Failed to switch Primary db target"
+elif [ $s_is_master = 1 ]; then
+  msg="Setting the db target to the SAME location pg instance"
+  update_dn_in_hosts $same_location
+elif [ $r_is_master = 1 ]; then
+  msg="Setting the db target to the REMOTE location pg instance"
+  update_dn_in_hosts $remote_location
+else
+  msg="ERROR: Did not find any Primary database"
+fi
+
+/bin/echo "$msg"
+/usr/bin/logger "$msg"
+
+
+# vim: set ft=sh :

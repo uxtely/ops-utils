@@ -1,0 +1,11 @@
+#!/bin/sh
+
+KEY_FILE=foo.example.com.key
+CERT_FILE=foo.example.com.cert
+openssl genrsa -out ${KEY_FILE} 2048
+openssl req -new -x509 \
+  -config create-self-signed-tls-cert.conf \
+  -key ${KEY_FILE} \
+  -out ${CERT_FILE} \
+  -days 1024 \
+  -subj /CN=foo.example.com

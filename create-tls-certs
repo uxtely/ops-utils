@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# https://blog.uxtely.com/isolated-tls-certificate-creation
+
+# https://github.com/Neilpang/acme.sh/wiki/dnsapi
+# https://github.com/acmesh-official/acme.sh/wiki/Options-and-Params
+#   --force because otherwise they can only be renewed if they're expired.
+
+if [ "$#" -ne 1 ]; then
+  echo "usage: `basename $0` <cloudflare-token>"
+  exit 1
+fi
+
+export CF_Token=$1
+export CF_Account_ID=your-account-id
+
+~/.acme.sh/acme.sh --issue --dns dns_cf -k ec-256 --force \
+  -d example.com \
+  -d blog.example.com 

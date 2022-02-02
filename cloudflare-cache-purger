@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# https://api.cloudflare.com/#zone-purge-files-by-url
+
+# Install `dialog`:
+#   brew install dialog
+#   sudo pacman -S dialog
+
+ZONE_ID=enter-the-zone-id-for-example-com # example.com
+TOKEN=enter-the-token # Permissions: Zone | Cache Purge | Purge
+API="https://api.cloudflare.com/client/v4/zones/$ZONE_ID/purge_cache"
+
+PAGES="
+example.com
+example.com/page-a
+"
+
+checkboxes=""
+for page in $PAGES; do
+  checkboxes="$checkboxes $page off"
+done
+
+chosen=$(dialog --stdout --no-lines --no-items --checklist "Purge" 0 0 0 $checkboxes)
+test "$chosen" || { echo "Aborted. Nothing was selected."; exit 1; }
+
+# Join URLs with commas
+urls=""
+for page in $chosen; do
+  urls="${urls}, \"https://${page}\""
+done
+urls=$(echo "$urls" | sed "s/^,//") # Remove the leading comma
+
+curl -X POST $API \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  --data "{ \"files\": [$urls] }"
