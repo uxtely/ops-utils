@@ -1,7 +1,7 @@
 # Utilities for Web Infrastructure Ops
 
 This repository has a few scripts that I use for the Uxtely
-infrastructure, so you'll have to adapt them to your needs. Some
+infrastructure, but you can adapt them to your needs. Some
 of them have companion [blog posts](https://blog.uxtely.com)
 &mdash; look for them in the initial comments of each script.
 

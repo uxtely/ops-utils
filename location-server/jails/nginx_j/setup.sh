@@ -29,7 +29,7 @@ for app in $APPS; do
   mkdir -p "/usr/local/DistBundles/$app"
 done
 
-# For explicitely mounting an empty 'root'
+# For mounting an empty 'root'
 mkdir "/usr/local/DistBundles/null"
 chmod 000 "/usr/local/DistBundles/null"
 
@@ -38,8 +38,6 @@ chmod 550 /usr/local/sbin/rotate-nginx-logs
 chmod u+x $HOMEDIR/deploy*
 
 chmod -R g+w /usr/local/DistBundles
-
-chmod u+x /usr/local/bin/ip-histogram
 
 cat << EOF
 ==============================
