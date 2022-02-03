@@ -26,7 +26,7 @@ curl -v https://orch.example.com 2>&1 | grep expire
 ### If installing in a remote:
 **Fill up disks with random data,** that's for:
 - An initial burn-in check.
-- SO an adversary would not be able to know how much data is on the disks.
+- So an adversary would not be able to know how much data is on the disks.
 - Who knows what's in them (these are rented/used disks)
 
 IPMI → Remote Control → iKVM/HTML5
