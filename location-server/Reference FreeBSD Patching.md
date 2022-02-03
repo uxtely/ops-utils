@@ -62,9 +62,5 @@ reboot
 freebsd-update install
 ```
 
-We no longer compile packages. We compiled mainly to use `libressl`. But it was
-to complex and time-consuming, e.g. after compiling all the packages (everything
-should was compiled everytime), we had an issue in NodeJS that only happened in
-the bare-metal servers, but wasn't reproducible in the VirtualBox QA machines.
-
-If it wasn't for that issue, I would keep compiling everything.
+We no longer compile packages. We compiled mainly to use
+`libressl`. But it was to complex and time-consuming,

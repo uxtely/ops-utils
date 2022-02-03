@@ -22,12 +22,13 @@ EOF
 
 SERVER=$(    user_input "Template"                 "none")
 ORCHIP=$(    user_input "Orch IP"                  "10.0.0.220")
-MYIP=$(      user_input "MY IP (curl ifconfig.me)" "10/24")
+MYIP=$(      user_input "My IP (curl ifconfig.me)" "10/24")
 HOSTUSER=$(  user_input "Host User"                "efortis")
 PASSPHRASE=$(user_input "SSH Passphrase"           "")
 
 test "$PASSPHRASE" || abort "Empty SSH Passphrase"
 
+VLAN=2000
 INTNET=192.168.56
 
 case $SERVER in
@@ -50,7 +51,7 @@ case $SERVER in
     XMASK=255.255.255.248
     GW=192.0.2.153
     INIC=igb0
-    IOPTS="broadcast $INTNET.255 vlanhwtag 2000"
+    IOPTS="broadcast $INTNET.255 vlanhwtag $VLAN"
     ;;
 
 
@@ -73,7 +74,7 @@ case $SERVER in
     XMASK=255.255.255.248
     GW=192.0.2.161
     INIC=igb0
-    IOPTS="broadcast $INTNET.255 vlanhwtag 2000"
+    IOPTS="broadcast $INTNET.255 vlanhwtag $VLAN"
     ;;
 
   *) abort "Invalid option: $SERVER" ;;

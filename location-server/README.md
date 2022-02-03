@@ -1,11 +1,11 @@
 # FreeBSD's Installation
 
-These scripts auto-install FreeBSD, baseline harden it, and configure it with 3 jails. See:
+These scripts auto-installs FreeBSD, baseline hardens it, and configures it with 3 jails. See:
 https://blog.uxtely.com/freebsd-jails-network-setup
 
 The configuration files in this directory match the structure they're going to be
 in the final server. These configs are tarred beforehand, and copied over to your
-laptop's `/tmp/UxtelyInstallerConfigs/setups`, along with the installer scripts.
+laptop's `/tmp/UxtelyInstallerConfigs/setups/`, along with the installer scripts.
 
 Serve them from: `https://orch.example.com/setups/`
 Therefore, **only one location server can be created at a time.**

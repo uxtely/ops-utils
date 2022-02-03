@@ -57,12 +57,13 @@ If for **Hivelocity**: (.155 hvm, .165 hvs)
 ifconfig em0 192.0.2.155/29
 route add default 192.0.2.153
 ORCHIP=
+echo "$ORCHIP orch.example.com" >> /etc/hosts
 ```
 
 Then for any:
 ```shell script
 cd /tmp
-fetch https://$ORCHIP/setups/installerconfig.sh 
+fetch https://orch.example.com/setups/installerconfig.sh 
 /usr/sbin/bsdinstall script /tmp/installerconfig.sh
 ```
 
