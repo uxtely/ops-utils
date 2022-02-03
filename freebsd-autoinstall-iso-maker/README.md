@@ -11,9 +11,10 @@ select **Shell** from the initial screen (Install, **Shell**, Live CD) and:
 ifconfig em0 192.0.0.2.111/24
 route add default 192.0.2.1
 ORCHIP=192.0.0.2.200
+echo "$ORCHIP orch.example.com" >> /etc/hosts
 
 cd /tmp
-fetch https://$ORCHIP/setups/installerconfig
+fetch https://orch.example.com/setups/installerconfig
 /usr/sbin/bsdinstall script /tmp/installerconfig
 ```
 
