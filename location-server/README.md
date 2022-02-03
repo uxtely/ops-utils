@@ -3,12 +3,12 @@
 These scripts auto-install FreeBSD, baseline harden it, and configure it with 3 jails. See:
 https://blog.uxtely.com/freebsd-jails-network-setup
 
-The configuration files in this directory match the structure they're
-going to be in the final server. These configs are tarred beforehand,
-and copied over to `/tmp/UxtelyInstallerConfigs/setups`, along with the installer 
-scripts.
+The configuration files in this directory match the structure they're going to be
+in the final server. These configs are tarred beforehand, and copied over to your
+laptop's `/tmp/UxtelyInstallerConfigs/setups`, along with the installer scripts.
 
-We serve them from: `https://orch.example.com/setups/`
+Serve them from: `https://orch.example.com/setups/`
+Therefore, **only one location server can be created at a time.**
 
 Each script part ends up printing a banner. If it doesn't print, something
 went wrong. For that, the scripts have `set -o errexit`, and a few tests,
@@ -17,7 +17,7 @@ didn't fail; so you can check for that too (if you missed the banners).
 
 **Temporary dummy files.**
 These files are just to allow the jails to boot fine during the installation.
-- `nginx_j` **needs** self-signed certificates
+- `nginx_j` **needs** TLS certificates (self-signed are OK)
 - `node_j` has a temp `main.js`
 
 
