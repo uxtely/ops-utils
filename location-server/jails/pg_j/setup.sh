@@ -40,7 +40,7 @@ listen_addresses = '*'
 hot_standby = on
 wal_level = 'hot_standby'
 
-# Prevent Write Amplication as it's not needed with ZFS, and we
+# Prevent Write Amplification as it's not needed with ZFS, and we
 # don't do cascading replication https://youtu.be/T_1Zo4m4v_M?t=580
 full_page_writes = off
 
