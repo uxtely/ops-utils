@@ -67,6 +67,8 @@ The following files get modified in-place:
 
 
 ## Troubleshooting
+
+### Install
 The `bsdinstall` error popup eats away any useful error message from the screen. To see
 the error messages, add `/bin/sh` or `sleep 60` at the end of any of the first two parts.
 
@@ -74,3 +76,13 @@ Common problems:
 - The orchestration server is not up
 - Some device didn't unmount like `/dev/cd`
   - `pwait` or `sleep 2` help to finish killing some processes. 
+
+
+### Login to "Location Servers"
+By design (our policy):
+- SSH Login:
+	- `root` **can't** login via SSH.
+	- Normal users **can only** login via SSH.
+- Console Login using Hivelocity's IPMI over their VPN
+	- Only `root` **can** login through the console.
+	- Normal users **can't** because their passwords are starred (*).

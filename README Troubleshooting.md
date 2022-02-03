@@ -1,20 +1,15 @@
-# local postgres logs
+# Troubleshooting Tips
+
+## local postgres logs (macOS)
 ```
 /opt/homebrew/var/log/postgres.log
 ```
 
-# Login to "Location Servers"
-By design (our policy):
-- SSH Login:
-  - `root` **can't** login via SSH.
-  - Normal users **can only** login via SSH. 
-- Console Login using Hivelocity's IPMI over their VPN
-  - Only `root` **can** login through the console.
-  - Normal users **can't** because their passwords are starred (*).
 
 
-# Flush Browser DNS Cache
-In Linux, using `sudoedit /etc/hosts` needs to exit `:wq` (`:w` alone doesn't work) 
+## Flush Browser DNS Cache
+### Hosts file
+`sudoedit /etc/hosts` needs to exit `:wq` (`:w` alone doesn't work) 
 
 ###Chrome
 chrome://net-internals/#dns
@@ -23,9 +18,9 @@ chrome://net-internals/#dns
 about:networking#dns
 
 
-# Chrome
+## Chrome
 ####Redirect to https in dev
-On the console just Right-Click -> Clear Browser Cache (it won't
+On the console just Right-Click → Clear Browser Cache (it won't
 delete the IndexedDB). In this case trying to delete the HSTS record in
 Chrome's internals (chrome://net -internals/#hsts) doesn't do anything.
 
@@ -37,12 +32,12 @@ Handy if it's stuck in the one bound to WebStorm's Debug.
 
 
 
-# Safari
+## Safari
 #### Allow tabbing to buttons
 Preferences → Advanced → "Press Tab to highlight each item on a webpage"
 
 
-# Remote Debugging (Android)
+## Remote Debugging (Android)
 For developing/testing touch with a Galaxy phone using Chrome's Remote devices.
 chrome://inspect/#devices
 
@@ -55,7 +50,7 @@ Phone setup:
 
 
   
-# VirtualBox
+## VirtualBox
 - Avoid **Close** → **Save State**, it messes up the time.
 - Host-Only Adapter
   - Ideal when there's no Internet
@@ -71,8 +66,7 @@ The guest connects to the internet, but the host can't access the guest
   - Trunk the WiFi and LAN (not possible in macOS AFAIK).
   
   
-
-# FreeBSD Jails 
+## FreeBSD Jails 
 ### Can't restart them
 VERIFY: It seems that this is no longer an issue.
 This is for both orch and location servers.
@@ -83,7 +77,7 @@ epairs are fixed at startup and for some reason they're getting deleted in FreeB
 Workaround: `shutdown -r now` on the host, or try `service netif restart`
 
 
-# ssh
+## ssh
 ### Too many authentication failures
 ...in Linux for no reason? Try:
 ```shell script
