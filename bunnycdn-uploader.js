@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 
 
 const BUNNY_CREDENTIAL_HEADER = { // TODO to env var
-	AccessKey: 'enter-your-ftp-password' // Same as the FTP Password
+	AccessKey: 'same-as-your-ftp-password'
 };
 const BUNNY_STORAGE_ZONE = 'enter-your-zone-name';
 
