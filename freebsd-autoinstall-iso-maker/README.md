@@ -14,8 +14,8 @@ ORCHIP=192.0.0.2.200
 echo "$ORCHIP orch.example.com" >> /etc/hosts
 
 cd /tmp
-/usr/bin/fetch https://orch.example.com/setups/installerconfig
-/usr/sbin/bsdinstall script /tmp/installerconfig
+fetch https://orch.example.com/setups/installerconfig
+bsdinstall script /tmp/installerconfig
 ```
 
 
