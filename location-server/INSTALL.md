@@ -12,8 +12,10 @@ make_password 16 > $VAULTDIR/appserver.db.pass
 make_password 16 > $VAULTDIR/replicator.db.pass
 ```
 
-- Make sure Orch's Nginx TLS certificate is not expired. e.g. try:
-`curl -v --insecure https://orch.example.com 2>&1 | grep expire`
+Make sure Orch's Nginx TLS certificate is not expired.
+```shell
+curl -v https://orch.example.com 2>&1 | grep expire
+```
 
 ### If installing in a local VM: 
 - Make sure there's a `vboxnet0` `192.168.56.1/24` (no DHCP) in File &rarr; Host Network Manager.
@@ -22,10 +24,20 @@ make_password 16 > $VAULTDIR/replicator.db.pass
 
 
 ### If installing in a remote:
-- [Forward your laptop to a VPS](INSTALL InstallerConfig Server Forwarding.md)
-- Connect to Hivelocity's VPN, and mount the FreeBSD ISO in the IPMI 
-  - [Hivelocity Guide](../README%20VPN.md)
-  - Fill up disks with random data
+**Fill up disks with random data,** that's for:
+- An initial burn-in check.
+- SO an adversary would not be able to know how much data is on the disks.
+- Who knows what's in them (these are rented/used disks)
+
+IPMI → Remote Control → iKVM/HTML5
+
+```shell
+dd if=/dev/urandom of=/dev/ada0 bs=1m
+dd if=/dev/urandom of=/dev/ada1 bs=1m
+```
+Takes ~65 minutes per 480GB SSD. `Ctrl+T` shows the progress.
+
+
   
   
 ## Create installer scripts 
