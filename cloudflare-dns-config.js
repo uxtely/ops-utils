@@ -6,14 +6,13 @@ import https from "https"
 
 (async () => {
 	/* Cloudflare */
-	const ZONE_ID = 'enter-the-zone-id' // example.com
+	const ZONE_ID = 'enter-a-zone-id' // example.com
 	const TOKEN = 'enter-a-token' // Needs Edit Zone DNS Permissions
 
 	const cfAPI = `https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records`
 
 	const DOMAINS = [
 		'example.com',
-		'my.example.com',
 		'free.example.com',
 		'blog.example.com'
 	]
@@ -25,7 +24,7 @@ import https from "https"
 		input: process.stdin,
 		output: process.stdout,
 		prompt: `
-Cloudlare A Records
+Cloudflare A Records
 1. Delete Server A
 2. Delete Server B
 3. Restore Server A 
@@ -56,7 +55,7 @@ Type a number: `
 	}
 
 	async function delete_A_records(ip) {
-		console.log('Deleting', ip)
+		console.log('Deleting...', ip)
 		const res = await cloudflareAPI('GET', cfAPI)
 		const ids = res.result.filter(r => r.content === ip).map(r => r.id)
 		return Promise.all(ids.map(id => cloudflareAPI('DELETE', cfAPI + '/' + id)))
