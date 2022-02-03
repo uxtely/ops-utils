@@ -21,7 +21,7 @@ hvs  | Hivelocity Secondary
 EOF
 
 SERVER=$(    user_input "Template"                 "none")
-ORCHIP=$(    user_input "Orch IP                   "10.0.0.220")
+ORCHIP=$(    user_input "Orch IP"                  "10.0.0.220")
 MYIP=$(      user_input "MY IP (curl ifconfig.me)" "10/24")
 HOSTUSER=$(  user_input "Host User"                "efortis")
 PASSPHRASE=$(user_input "SSH Passphrase"           "")
