@@ -4,11 +4,11 @@
 
 usage() {
   cat << EOF >&2
-Usage: $0 {i|o|og}
+Usage: $0 {i|o|ob|og}
 
 i   Runs "npm install" on all projects
 o   Checks outdated NPMs on all projects
-ob   Same as "o" but opens the repos in a browser
+ob  Same as "o" but opens the repos in a browser
 og  Checks outdated NPMs globally
 EOF
 exit 1
@@ -57,11 +57,11 @@ npmog() { # Checks for outdated global NPMs
 
 
 case $1 in
-  i) npmi ;;
-  o) npmo | sort -k6 ;;
+  i)  npmi ;;
+  o)  npmo | sort -k6 ;;
   ob) npmo | sort -k6 | tee /dev/tty | awk '{print $6}' | uniq | xargs npm repo ;;
   og) npmog ;;
-  *) usage ;;
+  *)  usage ;;
 esac
 
 
