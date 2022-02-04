@@ -7,8 +7,8 @@ The configuration files in this directory match the structure they're going to b
 in the final server. These configs are tarred beforehand, and copied over to your
 laptop's `/tmp/UxtelyInstallerConfigs/setups/`, along with the installer scripts.
 
-Serve them from: `https://orch.example.com/setups/`
-Therefore, **only one location server can be created at a time.**
+Then, serve at: `https://orch.example.com/setups/`. Yes,
+**only one location server can be created at a time.**
 
 Each script part ends up printing a banner. If it doesn't print, something
 went wrong. For that, the scripts have `set -o errexit`, and a few tests,
