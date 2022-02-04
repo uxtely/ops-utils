@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+<!--
+Mitigates localhost spies.
+  https://news.ycombinator.com/item?id=20028108
+  http://http.jameshfisher.com/2019/05/26/i-can-see-your-local-web-servers/
+  
+Picking a custom, non-common, IP address and port number 
+is equivalent to ~40 bits password to mitigate localhost spies.
+  24 on the IP 
++ 16 on the port
+= 40 bits
+
+Even if you CORS stylesheets and images could be reached by a malicious website.
+
+Usage macOS:
+  Replace the .99 octects in `<string>127.99.99.99</string>` with your own, e.g., 127.1.2.3
+  sudo cp com.example.loopback1.plist /Library/LaunchDaemons/
+-->
+
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.example.loopback1</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/sbin/ifconfig</string>
+        <string>lo0</string>
+        <string>alias</string>
+        <string>127.99.99.99</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>
