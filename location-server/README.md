@@ -18,6 +18,7 @@ didn't fail; so you can check for that too (if you missed the banners).
 **Temporary dummy files.**
 These files are just to allow the jails to boot fine during the installation.
 - `nginx_j` **needs** TLS certificates (self-signed are OK)
+  - put them in `jails_j/usr/local/DistBundles/certs/` (see [nginx.conf](./jails/nginx_j/usr/local/etc/nginx/nginx.conf))
 - `node_j` has a temp `main.js`
 
 
