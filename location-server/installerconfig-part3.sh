@@ -33,7 +33,7 @@ done
 pw useradd -n $HOST_USER -w no -G wheel
 chown -R $HOST_USER /home/$HOST_USER/
 chmod -R 700 /home/$HOST_USER/.ssh
-# Passwordless (-w no). He can only login via ssh+pubkey.
+# Passwordless (-w no). Only logins via ssh+pubkey are allowed.
 
 
 # Create random root passwords
