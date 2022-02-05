@@ -3,7 +3,7 @@ DISTRIBUTION="kernel.txz base.txz"
 export nonInteractive="YES"
 
 # https://github.com/freebsd/freebsd/blob/master/usr.sbin/bsdinstall/scripts/zfsboot
-export ZFSBOOT_DISKS="ada0 ada1"
+export ZFSBOOT_DISKS="ada0 ada1" # geom disk list | grep Name
 export ZFSBOOT_VDEV_TYPE=mirror
 export ZFSBOOT_SWAP_ENCRYPTION=1
 export ZFSBOOT_GELI_ENCRYPTION=1
