@@ -1,5 +1,3 @@
-Port 3145
-
 Ciphers chacha20-poly1305@openssh.com
 
 AllowAgentForwarding no

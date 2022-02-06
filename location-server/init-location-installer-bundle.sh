@@ -155,9 +155,9 @@ chmod -w ~/.SomeSecretDirectory/passwords/${SERVER}.diskpass
 # SSH Keys
 PUBK=id_ed25519.pub
 
-make_ssh ${SERVER}         $XADDR 3145 $HOSTUSER "$PASSPHRASE"
-make_ssh ${SERVER}_nginx_j $XADDR 3146 deployer "$PASSPHRASE"
-make_ssh ${SERVER}_node_j  $XADDR 3147 deployer "$PASSPHRASE"
+make_ssh ${SERVER}         $XADDR 22 $HOSTUSER "$PASSPHRASE"
+make_ssh ${SERVER}_nginx_j $XADDR 2220 deployer "$PASSPHRASE"
+make_ssh ${SERVER}_node_j  $XADDR 2230 deployer "$PASSPHRASE"
 
 # Pre-pack Host pubkey
 mkdir -p home/$HOSTUSER/.ssh
