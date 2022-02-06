@@ -7,7 +7,7 @@ The configuration files in this directory match the structure they're going to b
 in the final server. These configs are tarred beforehand, and copied over to your
 laptop's `/tmp/UxtelyInstallerConfigs/setups/`, along with the installer scripts.
 
-Then, serve at: `https://orch.example.com/setups/`. Yes,
+Then, you'll have to serve that at: `https://orch.example.com/setups/`. Yes,
 **only one location server can be created at a time.**
 
 Each script part ends up printing a banner. If it doesn't print, something
@@ -16,7 +16,7 @@ but not much tracing information. Also, each script gets deleted if it
 didn't fail; so you can check for that too (if you missed the banners).
 
 ### Temporary dummy files
-These files are just to allow the jails to boot fine during the installation.
+These files are just to allow the jails to boot up without issues during the installation.
 - `nginx_j` **needs** TLS certificates
   - put them in `jails_j/usr/local/DistBundles/certs/` (see [nginx.conf](./jails/nginx_j/usr/local/etc/nginx/nginx.conf))
 - `node_j` has a temp `main.js`
