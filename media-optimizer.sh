@@ -2,7 +2,7 @@
 set -o noglob
 IFS=$'\n'
 
-# https://blog.uxtely.com/convert-to-avif-programmatically
+# https://blog.uidrafter.com/convert-to-avif-programmatically
 
 # Requires:
 # brew install oxipng webp libavif ffmpeg

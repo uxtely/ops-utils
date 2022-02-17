@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Diagram: https://blog.uxtely.com/freebsd-jails-network-setup
+# Diagram: https://blog.uidrafter.com/freebsd-jails-network-setup
 # TODO copy the certs to jails/nginx_j/usr/local/DistBundles/certs
 
 set -o errexit

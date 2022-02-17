@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# https://blog.uxtely.com/deploy-assets-before-documents
+# https://blog.uidrafter.com/deploy-assets-before-documents
 
 # It copies subdirectories first. So during deployment, it
 # avoids FOUCs, and 404s of images, css, js. By convention, our
