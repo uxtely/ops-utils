@@ -11,7 +11,7 @@
 ### Hosts file
 `sudoedit /etc/hosts` needs to exit `:wq` (`:w` alone doesn't work) 
 
-###Chrome
+### Chrome
 chrome://net-internals/#dns
 
 ### Firefox
@@ -19,7 +19,7 @@ about:networking#dns
 
 
 ## Chrome
-####Redirect to https in dev
+#### Redirect to https in dev
 On the console just Right-Click → Clear Browser Cache (it won't
 delete the IndexedDB). In this case trying to delete the HSTS record in
 Chrome's internals (chrome://net -internals/#hsts) doesn't do anything.
