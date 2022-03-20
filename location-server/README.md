@@ -1,10 +1,10 @@
 # FreeBSD's Installation
 
-These scripts auto-installs FreeBSD, baseline hardens it, and configures it with 3 jails. See:
-https://blog.uidrafter.com/freebsd-jails-network-setup
+These scripts auto-install FreeBSD, baseline harden it, and configure it with 3 jails. See
+the diagrams and more details at: https://blog.uidrafter.com/freebsd-jails-network-setup
 
 The configuration files in this directory match the structure they're going to be
-in the final server. These configs are tarred beforehand, and copied over to your
+in the final server. They are tarred beforehand, and copied over to your
 laptop's `/tmp/UxtelyInstallerConfigs/setups/`, along with the installer scripts.
 
 Then, you'll have to serve that at: `https://orch.example.com/setups/`. Yes,
