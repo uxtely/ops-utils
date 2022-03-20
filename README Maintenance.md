@@ -1,12 +1,8 @@
 # Maintenance
 
-## Monthly [Renew TLS Certificates](./create-tls-certs.md) 
-
-## Patch FreeBSD
-[Patch FreeBSD](./location-server/Reference%20FreeBSD%20Patching.md)
-
-## Firewall Blocklist (daily)
-curl script + list: [/etc/ips_blocklist](location-server/etc/ips_blocklist)
+- Monthly [Renew TLS Certificates](./create-tls-certs.md) 
+- [Patching FreeBSD](./location-server/Reference%20FreeBSD%20Patching.md)
+- Firewall Blocklist (daily) curl script + list: [/etc/ips_blocklist](location-server/etc/ips_blocklist)
 
 ## Mailing Lists
 
