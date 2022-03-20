@@ -14,8 +14,6 @@ import {
 } from 'fs'
 
 
-export const reIsSourceCode = /^(?!.*\.test).*\.js$/; // js not ending in .test.js
-
 export const read = f => readFileSync(f, 'utf8')
 export const readIfExists = f => existsSync(f) ? read(f) : ''
 
@@ -80,3 +78,6 @@ export function copyDir(from, to) {
 export function brotli(f) {
 	writeFileSync(f + '.br', brotliCompressSync(readFileSync(f, 'utf8')))
 }
+
+export const reIsSourceCode = /^(?!.*\.test).*\.js$/; // js not ending in .test.js
+
