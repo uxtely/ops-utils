@@ -1,6 +1,6 @@
 # Utilities for Web Infrastructure Ops
 
-This repository has a few scripts Uxtely uses, but you can adapt them to your
+This repository has a few scripts Uxtely uses that you can adapt them to your
 needs. Some of them have companion [blog posts](https://blog.uidrafter.com)
 &mdash; look for them in the initial comments of each script.
 
