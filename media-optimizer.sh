@@ -8,7 +8,7 @@ IFS=$'\n'
 # brew install oxipng webp libavif ffmpeg
 
 # We only use PNGs, no JPGs. This way we can ensure
-# there's no color shifting and PNGs look sharper anyways.
+# there's no color shifting and PNGs look sharper anyway.
 nJPG=$(find $1 -type f -name *.jpg | awk 'END{print NR}')
 if [ $nJPG != 0 ]; then
   echo "ERROR: Found a JPG. Convert it to PNG" >&2
@@ -16,9 +16,9 @@ if [ $nJPG != 0 ]; then
 fi
 
 # If there's no foo.png.avif, foo.png outputs:
-#  1. foo.png (better compressed lossless, and without EXIF metadata)
-#  2. foo.png.avif
-#  3. foo.png.webp
+#  - foo.png (better compressed lossless, and without EXIF metadata)
+#  - foo.png.avif
+#  - foo.png.webp
 for img in $(find $1 -type f -name *.png); do
   if [ ! -f "$img.avif" ]; then
     chmod 644 $img
