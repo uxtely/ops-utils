@@ -4,8 +4,8 @@
 This is guide for injecting a file into a FreeBSD
 ISO, so it can run an automatic installation.
 
-**But I don't create them anymore.** That's to say, you can also boot from a normal
-release ISO and simply download and run the installation script. For example,
+**But I don't create them anymore** because you can also boot from a normal
+release ISO and download and run the installation script. For example,
 select **Shell** from the initial screen (Install, **Shell**, Live CD) and:
 ```shell
 ifconfig em0 192.0.0.2.111/24
@@ -35,14 +35,14 @@ it's mainly a file that exports variables for `bsdinstall`.
 
 As it fetches a pre-determined continuation script, we can reuse the ISO to
 install location servers. Besides convenience, this way prevents exposing
-configs and setup scripts in the provider's ISOs pool. The downside, only
-one server can be created at a time, the ISO is served from a fixed URL.
+configs and setup scripts in the hosting provider's ISOs pool. The downside, only
+one server can be created at a time; the ISO is served from a fixed URL.
 
 
 ## Build an ISO
 `sh /root/bootstrap-iso-creation.sh`
 
-But if Orch is a local VM, pass Orch's IP. Otherwise it uses the external IP.
+But if Orch is a local VM, pass Orch's IP. Otherwise, it uses the external IP.
 ```shell script
 sh /root/bootstrap-iso-creation.sh 10.0.0.220
 ```
@@ -51,7 +51,7 @@ sh /root/bootstrap-iso-creation.sh 10.0.0.220
 - FreeBSD updates are not includable in the ISO. Copying over
 	`var/db/updates` doesn't work (as google says, but haven't tried it).
 - An option is to compile it. Check out
-	FreeBSD's [releng tree](https://svnweb.freebsd.org/base/releng/12.1/).
+	FreeBSD's [releng tree](https://svnweb.freebsd.org/base/releng/13.0/).
 	I think (not sure) that that tree tracks patches.
 
 
