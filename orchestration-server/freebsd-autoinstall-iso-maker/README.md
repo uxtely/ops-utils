@@ -51,7 +51,7 @@ sh /root/bootstrap-iso-creation.sh 10.0.0.220
 - FreeBSD updates are not includable in the ISO. Copying over
 	`var/db/updates` doesn't work (as google says, but haven't tried it).
 - An option is to compile it. Check out
-	FreeBSD's [releng tree](https://svnweb.freebsd.org/base/releng/13.0/).
+	FreeBSD's [releng tree](https://svnweb.freebsd.org/base/releng/12.3/).
 	I think (not sure) that that tree tracks patches.
 
 
