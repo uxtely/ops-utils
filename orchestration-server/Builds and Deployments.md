@@ -26,7 +26,7 @@ apps that were bumped. Wait for the build(s) before deploying.
 
 ## Deployment
 Deploying any SPA implicitly redeploys/reloads the Backend because
-their index.html [are cached](./Server/src/client-apps/rootGet.js).
+their index.html 
 
 `ssh -t orch_code_j /home/git/deploy`
 - Select the apps to deploy
@@ -59,7 +59,7 @@ be needed [chrome://net-internals/#dns](chrome://net-internals/#dns)
 
 
 ## Build Script
-The [build script](./jails/code_j/home/git/app-brainstorm.git/hooks/post-receive)
+The [build script](./jails/code_j/home/git/example.git/hooks/post-receive)
 lives in `orch_code_j`, and it's a post-receive hook that:
 - If any dependency changed in package-lock.json, runs
 	- `npm ci` (deletes node_modules and installs them).

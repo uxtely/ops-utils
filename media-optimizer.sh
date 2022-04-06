@@ -3,6 +3,7 @@ set -o noglob
 IFS=$'\n'
 
 # https://blog.uidrafter.com/convert-to-avif-programmatically
+# https://blog.uidrafter.com/conditional-avif-for-video-posters
 
 # Requires:
 # brew install oxipng webp libavif ffmpeg
