@@ -10,7 +10,7 @@ IFS=$'\n'
 
 # We only use PNGs, no JPGs. This way we can ensure
 # there's no color shifting and PNGs look sharper anyway.
-nJPG=$(find $1 -type f -name *.jpg | awk 'END{print NR}')
+nJPG=$(find $1 -type f -name *\.jpg | awk 'END{print NR}')
 if [ $nJPG != 0 ]; then
   echo "ERROR: Found a JPG. Convert it to PNG" >&2
   exit 1
@@ -20,7 +20,7 @@ fi
 #  - foo.png (better compressed lossless, and without EXIF metadata)
 #  - foo.png.avif
 #  - foo.png.webp
-for img in $(find $1 -type f -name *.png); do
+for img in $(find $1 -type f -name *\.png); do
   if [ ! -f "$img.avif" ]; then
     chmod 644 $img
     oxipng --opt max --strip safe $img
@@ -34,7 +34,7 @@ done
 # should appear before the video and audio section (mdat).
 # https://trac.ffmpeg.org/wiki/HowToCheckIfFaststartIsEnabledForPlayback
 # https://www.ramugedia.com/mp4-container
-for video in $(find $1 -type f -name *.mp4); do
+for video in $(find $1 -type f -name *\.mp4); do
   mp4_section_appearing_first=`ffmpeg -v trace -i $video NUL 2>&1 | grep --max-count 1 --only-matching -e "type:'mdat'" -e "type:'moov'"`
   if [ $mp4_section_appearing_first != "type:'moov'" ]; then
     ffmpeg -i $video -movflags +faststart $video.tmp.mp4
