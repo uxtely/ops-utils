@@ -2,19 +2,16 @@ import { join, parse } from 'path'
 import { copy, sha1, makeDir, listFiles } from '../nodejs-fs-utils.js'
 
 
-// I no longer use these functions, because I opted
-// to manually keep track of versioning media files.
-
 /**
  * Copies a dir, depth=1, replacing the filenames with a hash in the target
  *   foo.png      -> <png-hash>.png
  *   foo.png.webp -> <png-hash>.png.webp
  *   foo.png.avif -> <png-hash>.png.avif
- *   
+ *
  * Yes, both use the SHA-1 from the original PNG. That way
  * in nginx.conf we can conditionally serve the best format.
  *   https://blog.uidrafter.com/conditional-avif-for-video-posters
- * 
+ *
  * We don't use JPGs (explained in ./media-optimizer.sh)
  */
 export function copyDirWithHashedNames(src, dest) {
@@ -26,7 +23,7 @@ export function copyDirWithHashedNames(src, dest) {
 		const newFileName = name + '-' + sha1(file) + ext
 		const newFile = join(dest, newFileName)
 		mediaHashes.set(base, newFileName)
-		copy(file, newFile);
+		copy(file, newFile)
 
 		if (file.endsWith('.png')) {
 			copy(`${file}.webp`, `${newFile}.webp`)
@@ -40,9 +37,9 @@ export function copyDirWithHashedNames(src, dest) {
 
 /**
  * For using the SHA-1 hashes as filenames in HTML.
- * If you want to handle CSS files, edit the regex so 
+ * If you want to handle CSS files, edit the regex so
  * instead of checking `="` (e.g. src="img.png") also checks for `url(`
- * 
+ *
  * Assumes that all the files are in "media/" (not ../media, ./media)
  **/
 export function remapMedia(mediaHashes, html) {
