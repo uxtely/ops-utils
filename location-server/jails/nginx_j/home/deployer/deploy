@@ -1,13 +1,12 @@
 #!/bin/sh
 
 # https://blog.uidrafter.com/deploy-assets-before-documents
-
 # It copies subdirectories first. So during deployment, it
 # avoids FOUCs, and 404s of images, css, js. By convention, our
-# assets are in subdirs and the HTML files at the top level.
-#
-# rsync --times (preserve time) is for consistent LastModifiedTime across servers
-# (that LMT is part of the ETag)
+# assets are in subdirectories and the HTML files at the top level.
+
+# https://blog.uidrafter.com/hitting-304-across-servers
+# (Preserve times) `rsync --times` is for consistent LastModifiedTime across servers
 
 case $1 in
   AccountSPA | Blog | AppSPA | UserDocs | Website)
@@ -20,7 +19,7 @@ esac
 SOURCE=/home/deployer/$project
 DEST=/usr/local/DistBundles/$project
 
-# Subdirs first (assets)
+# Subdirectories first (assets)
 rsync --recursive --include '*/' --exclude '/*' $SOURCE/ $DEST/
 
 # Then top level (HTML documents)
