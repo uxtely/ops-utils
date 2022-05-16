@@ -36,7 +36,7 @@ done
 # https://www.ramugedia.com/mp4-container
 for video in $(find $1 -type f -name *\.mp4); do
   mp4_section_appearing_first=`ffmpeg -v trace -i $video NUL 2>&1 | grep --max-count 1 --only-matching -e "type:'mdat'" -e "type:'moov'"`
-  if [ $mp4_section_appearing_first != "type:'moov'" ]; then
+  if [ "$mp4_section_appearing_first" != "type:'moov'" ]; then
     ffmpeg -i $video -movflags +faststart $video.tmp.mp4
     rm $video
     mv $video.tmp.mp4 $video
