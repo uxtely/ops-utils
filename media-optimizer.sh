@@ -5,16 +5,24 @@ IFS=$'\n'
 # https://blog.uidrafter.com/convert-to-avif-programmatically
 # https://blog.uidrafter.com/conditional-avif-for-video-posters
 
+abort() { # Prints the message in red to stderr
+  printf "\033[31m  ABORTED: $1\n\033[0m" >&2
+  exit 1
+}
+
 # Requires:
 # brew install oxipng webp libavif ffmpeg
+command -v cwebp > /dev/null || abort "Missing webp"
+command -v oxipng > /dev/null || abort "Missing oxipng"
+command -v avifenc > /dev/null || abort "Missing libavif"
+command -v ffmpeg > /dev/null || abort "Missing ffmpeg"
 
-# We only use PNGs, no JPGs. This way we can ensure
-# there's no color shifting and PNGs look sharper anyway.
+
+# We only use PNGs, no JPGs. This way we can ensure there's no
+# color shifting between screenshots and PNGs look sharper anyway.
 nJPG=$(find $1 -type f -name *\.jpg | awk 'END{print NR}')
-if [ $nJPG != 0 ]; then
-  echo "ERROR: Found a JPG. Convert it to PNG" >&2
-  exit 1
-fi
+test $nJPG = 0 || abort "Found a JPG. Convert it to PNG." 
+
 
 # If there's no foo.png.avif, foo.png outputs:
 #  - foo.png (better compressed lossless, and without EXIF metadata)
