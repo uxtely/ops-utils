@@ -42,7 +42,7 @@ export function copyDirWithHashedNames(src, dest) {
  *
  * Assumes that all the files are in "media/" (not ../media, ./media)
  **/
-export function remapMedia(mediaHashes, html) {
+export function remapHtmlMedia(mediaHashes, html) {
 	const reFindMedia = new RegExp('(="media/.*?)"', 'g')
 	const reFindMediaKey = new RegExp('="media/')
 

@@ -1,5 +1,5 @@
 import { strictEqual, throws } from 'assert'
-import { remapMedia } from './media-remaper.js'
+import { remapHtmlMedia } from './media-remaper.js'
 
 
 const mHashes = new Map([
@@ -8,9 +8,9 @@ const mHashes = new Map([
 	['chi.png', '0xFC.png']
 ])
 
-throws(() => remapMedia(mHashes, `<video src="media/missing.mp4">`))
+throws(() => remapHtmlMedia(mHashes, `<video src="media/missing.mp4">`))
 
-strictEqual(remapMedia(mHashes, `
+strictEqual(remapHtmlMedia(mHashes, `
 <img src="media/alpha.png">
 <img src="media/alpha.png">
 <img src="media/beta.png">
