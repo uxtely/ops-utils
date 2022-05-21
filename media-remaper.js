@@ -1,5 +1,6 @@
 import { join, parse } from 'path'
-import { copy, sha1, makeDir, listFiles } from '../nodejs-fs-utils.js'
+import { createHash } from 'crypto'
+import { readFileSync, mkdirSync, copyFileSync, readdirSync } from 'fs'
 
 
 /**
@@ -15,7 +16,7 @@ import { copy, sha1, makeDir, listFiles } from '../nodejs-fs-utils.js'
  * We don't use JPGs (explained in ./media-optimizer.sh)
  */
 export function copyDirWithHashedNames(src, dest) {
-	makeDir(dest)
+	mkdirSync(dest, { recursive: true })
 	const mediaHashes = new Map()
 
 	for (const file of listFiles(src, /\.(png|mp4)$/)) {
@@ -23,11 +24,11 @@ export function copyDirWithHashedNames(src, dest) {
 		const newFileName = name + '-' + sha1(file) + ext
 		const newFile = join(dest, newFileName)
 		mediaHashes.set(base, newFileName)
-		copy(file, newFile)
+		copyFileSync(file, newFile)
 
 		if (file.endsWith('.png')) {
-			copy(`${file}.webp`, `${newFile}.webp`)
-			copy(`${file}.avif`, `${newFile}.avif`)
+			copyFileSync(`${file}.webp`, `${newFile}.webp`)
+			copyFileSync(`${file}.avif`, `${newFile}.avif`)
 		}
 	}
 
@@ -55,4 +56,14 @@ export function remapHtmlMedia(mediaHashes, html) {
 	return html
 }
 
+
+function sha1(f) {
+	return createHash('sha1').update(readFileSync(f)).digest('base64url')
+}
+
+function listFiles(dir, regex) {
+	return readdirSync(dir)
+		.filter(f => regex.test(f))
+		.map(f => join(dir, f))
+}
 

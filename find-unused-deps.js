@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import fs from 'fs';
+import fs from 'fs'
 import { dirname, join, resolve } from 'path'
-import { reIsSourceCode, read } from '../nodejs-fs-utils.js'
 
 
 /**
@@ -9,18 +8,18 @@ import { reIsSourceCode, read } from '../nodejs-fs-utils.js'
  * e.g. see what can be consolidated, finding dead files, etc.
  */
 
-const DIR = resolve('../../AppSPA/src');
+const DIR = resolve('../../AppSPA/src')
+const reIsSourceCode = /^(?!.*\.test).*\.js$/ // js not ending in .test.js
+const importPathRegex = /from\W'.*\.js'/g // imports with .js extension
 
-const importPathRegex = /from\W'.*\.js'/g; // imports with .js extension
-
-console.log(reportDependantCount());
+console.log(reportDependantCount())
 
 
 function reportDependantCount() {
-	const graph = indexDependants();
-	const res = [];
+	const graph = indexDependants()
+	const res = []
 	for (const fpath in graph)
-		res.push([fpath, graph[fpath].length]);
+		res.push([fpath, graph[fpath].length])
 
 	return res
 		.filter(([, count]) => count === 0)
@@ -39,20 +38,20 @@ function reportDependantCount() {
  * }
  */
 function indexDependants() {
-	const out = {};
-	const deps = indexDependecies();
+	const out = {}
+	const deps = indexDependecies()
 
 	for (const fpath in deps)
 		for (const d of deps[fpath]) {
-			out[d] = out[d] || [];
-			out[d].push(fpath);
+			out[d] = out[d] || []
+			out[d].push(fpath)
 		}
 
 	for (const fpath in deps)
 		if (!(fpath in out))
-			out[fpath] = [];
+			out[fpath] = []
 
-	return out;
+	return out
 }
 
 
@@ -61,17 +60,17 @@ function indexDependants() {
  * { 'DIR/home/Home.js': ['DIR/strings/tr.js', 'DIR/utils/React.js'], ... }
  */
 function indexDependecies() {
-	const tree = indexSourceFiles();
-	const out = {};
+	const tree = indexSourceFiles()
+	const out = {}
 
 	for (const fpath in tree) {
-		const match = tree[fpath].match(importPathRegex);
-		const currFileDir = dirname(fpath);
+		const match = tree[fpath].match(importPathRegex)
+		const currFileDir = dirname(fpath)
 		out[fpath] = match
 			? match.map(m => join(currFileDir, m.replace("from '", '').replace(/'$/, '')))
-			: [];
+			: []
 	}
-	return out;
+	return out
 }
 
 
@@ -81,12 +80,12 @@ function indexDependecies() {
  */
 function indexSourceFiles(dir = DIR, dict = {}) {
 	for (const f of fs.readdirSync(dir)) {
-		const fPath = join(dir, f);
+		const fPath = join(dir, f)
 		if (fs.statSync(fPath).isDirectory())
-			indexSourceFiles(fPath, dict);
+			indexSourceFiles(fPath, dict)
 		else if (reIsSourceCode.test(fPath))
-			dict[fPath] = read(fPath);
+			dict[fPath] = fs.readFileSync(fPath, 'utf8')
 	}
-	return dict;
+	return dict
 }
 
