@@ -2,7 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 
 <!--
-Mitigates localhost spies.
+In macOS, replace the .99 octects in `<string>127.99.99.99</string>` with your own, e.g., 127.1.2.3
+  sudo cp com.example.loopback1.plist /Library/LaunchDaemons/
+  
+What for? It mitigates localhost spies.
   https://news.ycombinator.com/item?id=20028108
   http://http.jameshfisher.com/2019/05/26/i-can-see-your-local-web-servers/
   
@@ -13,10 +16,6 @@ is equivalent to ~40 bits password to mitigate localhost spies.
 = 40 bits
 
 Even if you CORS stylesheets and images could be reached by a malicious website.
-
-Usage macOS:
-  Replace the .99 octects in `<string>127.99.99.99</string>` with your own, e.g., 127.1.2.3
-  sudo cp com.example.loopback1.plist /Library/LaunchDaemons/
 -->
 
 <plist version="1.0">
