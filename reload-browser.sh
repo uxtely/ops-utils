@@ -13,6 +13,3 @@ else
   xdotool windowactivate $PREV_APP
 fi
 
-# TODO check if there's some Signal like SIGUSR to send to chrome/chorimum
-# https://gist.github.com/lawrencejones/8906909
-
