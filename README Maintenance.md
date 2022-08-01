@@ -19,5 +19,5 @@
 ### FreeBSD
 - https://www.freebsd.org/security/advisories
 - https://lists.freebsd.org/mailman/listinfo/freebsd-security-notifications
-- https://www.freebsd.org/releases/13.0R/errata.html
+- https://www.freebsd.org/releases/13.1R/errata.html
 

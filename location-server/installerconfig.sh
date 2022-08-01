@@ -15,9 +15,9 @@ set -o errexit
 set -o nounset
 set -o xtrace
 
-# Mount ISO FreeBSD-13.0
+# Mount ISO FreeBSD-13.1
 mkdir /mnt/iso
-mount_cd9660 /dev/iso9660/13_0_RELEASE_AMD64_CD /mnt/iso
+mount_cd9660 /dev/iso9660/13_1_RELEASE_AMD64_CD /mnt/iso
 
 read -p "Orch IP: " ORCHIP
 echo "$ORCHIP orch.example.com" >> /etc/hosts

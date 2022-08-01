@@ -1,7 +1,7 @@
 #!/bin/sh
 
-ISO=FreeBSD-13.0-RELEASE-amd64-bootonly.iso
-ISO_OUT=www/freebsd13.0-custom.iso
+ISO=FreeBSD-13.1-RELEASE-amd64-bootonly.iso
+ISO_OUT=www/freebsd13.1-custom.iso
 
 cd `dirname $0`
 

@@ -4,9 +4,9 @@ cd `dirname $0`
 
 MIRROR=https://ftp.freebsd.org/pub/FreeBSD/releases
 
-IMG=$MIRROR/ISO-IMAGES/13.0/FreeBSD-13.0-RELEASE-amd64-bootonly.iso
-BASE=$MIRROR/amd64/13.0-RELEASE/base.txz
-KERNEL=$MIRROR/amd64/13.0-RELEASE/kernel.txz
+IMG=$MIRROR/ISO-IMAGES/13.1/FreeBSD-13.1-RELEASE-amd64-bootonly.iso
+BASE=$MIRROR/amd64/13.1-RELEASE/base.txz
+KERNEL=$MIRROR/amd64/13.1-RELEASE/kernel.txz
 
 ensure_downloaded() {
   test -f `basename $1` || fetch $1
