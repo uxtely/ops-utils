@@ -6,7 +6,7 @@ See [nginx.conf](../location-server/jails/nginx_j/usr/local/etc/nginx/nginx.conf
 
 ## Install Postgres (e.g. in OpenBSD)
 READ: /usr/local/share/doc/pkg-readmes/postgresql-server
-```shell
+```sh
 pkg_add postgresql-server postgresql-client
 cat /usr/local/share/doc/pkg-readmes/postgresql-server
 su - _postgresql
