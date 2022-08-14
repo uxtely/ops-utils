@@ -2,9 +2,14 @@
 
 # https://api.cloudflare.com/#zone-purge-files-by-url
 
-# Install `dialog`:
-#   brew install dialog
-#   sudo pacman -S dialog
+abort() { # Prints the message in red to stderr
+  printf "\033[31m  ABORTED: $1\n\033[0m" >&2
+  exit 1
+}
+
+# brew install dialog 
+# sudo pacman -S dialog
+command -v dialog > /dev/null || abort "Please install dialog"
 
 ZONE_ID=enter-the-zone-id-for-example-com # example.com
 TOKEN=enter-the-token # Permissions: Zone | Cache Purge | Purge
@@ -21,7 +26,7 @@ for page in $PAGES; do
 done
 
 chosen=$(dialog --stdout --no-lines --no-items --checklist "Purge" 0 0 0 $checkboxes)
-test "$chosen" || { echo "Aborted. Nothing was selected."; exit 1; }
+test "$chosen" || abort "Please select a resource"
 
 # Join URLs with commas
 urls=""
