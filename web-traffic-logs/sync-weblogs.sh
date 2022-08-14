@@ -31,7 +31,7 @@ sync_logs() {
   rm $dest $lockfile
 }
 
-# Execute both in concurrently
+# Execute both concurrently
 sync_logs hvm_nginx_j &
 pids=$!
 sync_logs hvs_nginx_j &
