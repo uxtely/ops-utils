@@ -26,7 +26,6 @@ Promise.all(HealthCheckPoints.map(([addr, url]) => isOk(url, addr)))
 	.then(() => console.log('All OK'))
 	.catch(error => {
 		console.error('Error', error.toString())
-
 		const fromEmail = 'userfrom@example.com'
 		const toEmail = 'userto@example.com'
 		const emailBody = error.toString()
@@ -42,7 +41,12 @@ function isOk(url, ip) {
 		const req = https.request(url,
 			{
 				method: 'HEAD',
-				lookup: (_, __, resolveDNS) => resolveDNS(null, ip, IPv4),
+				lookup(_, options, resolveDNS) {
+					if (options.all)
+						resolveDNS(null, [{ address: ip, family: IPv4 }]) // Node 20
+					else
+						resolveDNS(null, ip, IPv4) // Node 16
+				},
 				headers: { 'User-Agent': 'HealthCheckBot' },
 				timeout: 2000
 			},
