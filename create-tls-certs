@@ -16,4 +16,4 @@ export CF_Account_ID=your-account-id
 
 ~/.acme.sh/acme.sh --issue --dns dns_cf -k ec-256 --force \
   -d example.com \
-  -d blog.example.com 
+  -d '*.example.com' 
