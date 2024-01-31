@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# https://blog.uidrafter.com/scripted-virtualbox-vm-installation
+# https://blog.uirig.com/scripted-virtualbox-vm-installation
 
 # Downloads an ISO (only once) and creates a VM.
 # It needs VirtualBox -> File -> Host Network Manager

@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# https://blog.uidrafter.com/deploy-assets-before-documents
+# https://blog.uirig.com/deploy-assets-before-documents
 # It copies subdirectories first. So during deployment, it
 # avoids FOUCs, and 404s of images, css, js. By convention, our
 # assets are in subdirectories and the HTML files at the top level.
 
-# https://blog.uidrafter.com/hitting-304-across-servers
+# https://blog.uirig.com/hitting-304-across-servers
 # (Preserve times) `rsync --times` is for consistent LastModifiedTime across servers
 
 case $1 in

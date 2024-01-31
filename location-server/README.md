@@ -1,7 +1,7 @@
 # FreeBSD's Installation
 
 These scripts auto-install FreeBSD, baseline harden it, and configure it with 3 jails. See
-the diagrams and more details at: https://blog.uidrafter.com/freebsd-jails-network-setup
+the diagrams and more details at: https://blog.uirig.com/freebsd-jails-network-setup
 
 The configuration files in this directory match the structure they're going to be
 in the final server. They are tarred beforehand, and copied over to your

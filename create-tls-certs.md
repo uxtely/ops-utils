@@ -2,7 +2,7 @@
 
 This guide is for generating Let's Encrypt certificates from your laptop
 
-[This blog post](https://blog.uidrafter.com/isolated-tls-certificate-creation)
+[This blog post](https://blog.uirig.com/isolated-tls-certificate-creation)
 explains why they're issued this way.
 
 
