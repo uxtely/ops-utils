@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# https://blog.uirig.com/isolated-tls-certificate-creation
+# https://blog.uxtly.com/isolated-tls-certificate-creation
 
 # https://github.com/Neilpang/acme.sh/wiki/dnsapi
 # https://github.com/acmesh-official/acme.sh/wiki/Options-and-Params

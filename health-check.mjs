@@ -3,7 +3,7 @@
 import https from 'https'
 import { execSync } from 'child_process'
 
-// https://blog.uirig.com/health-checking-dns-load-balanced-web-servers
+// https://blog.uxtly.com/health-checking-dns-load-balanced-web-servers
 
 const LocationServersIPv4s = [
 	'192.0.2.10',

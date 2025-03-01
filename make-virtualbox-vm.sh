@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# https://blog.uirig.com/scripted-virtualbox-vm-installation
+# https://blog.uxtly.com/scripted-virtualbox-vm-installation
 
 # Downloads an ISO (only once) and creates a VM.
 # It needs VirtualBox -> File -> Host Network Manager
@@ -21,7 +21,7 @@ BRIDGED_NIC=enp7s0 # VBoxManage list bridgedifs
 #BRIDGED_NIC="Realtek PCIe GbE Family Controller" # Windows
 
 OS=FreeBSD_64 # VBoxManage list ostypes
-DOWNLOAD=https://download.freebsd.org/ftp/releases/ISO-IMAGES/13.1/FreeBSD-13.1-RELEASE-amd64-disc1.iso
+DOWNLOAD=https://download.freebsd.org/ftp/releases/ISO-IMAGES/14.2/FreeBSD-14.2-RELEASE-amd64-disc1.iso
 
 
 iso=$(basename $DOWNLOAD)

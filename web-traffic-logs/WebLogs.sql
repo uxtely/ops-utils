@@ -27,7 +27,7 @@ CREATE OR REPLACE PROCEDURE insert_log(created_at FLOAT, ip INET, domain_name TE
 LANGUAGE SQL AS $$
 	INSERT INTO wlogs VALUES (to_timestamp(created_at), ip, domain_name, uri, status, body_bytes, referer, ua, server, method);
 $$;
--- CALL insert_log(1608427225.999, '1.2.3.4', 'blog.uirig.com', 'GET', 'myblogpost', 200, 1024, NULL, NULL, 0);
+-- CALL insert_log(1608427225.999, '1.2.3.4', 'blog.uxtly.com', 'GET', 'myblogpost', 200, 1024, NULL, NULL, 0);
 
 
 GRANT INSERT ON wlogs TO wlogger;

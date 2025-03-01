@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# https://blog.uirig.com/finding-outdated-npm
+# https://blog.uxtly.com/finding-outdated-npm
 
 usage() {
   cat << EOF >&2
